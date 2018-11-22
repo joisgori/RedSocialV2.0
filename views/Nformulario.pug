@@ -1,0 +1,29 @@
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible' content='ie=edge')
+  title Registro
+  link(rel='stylesheet' href='public/css/styleNForm.css')
+//
+  En este espacio irá el formulario para el registro de datos que mandaremos al base en mongodb,
+  a su vez, acá solictaremos hasta la pregunta clave que nos servirá para recuperar luego nuestra cuenta
+  si es que hemos olvidado la contraseña de inicio de sesión
+p Hola, ingrese su datos para registrarse
+form(action='index.html' method='post')
+  // Lo crearé con método post para facilitar las entradas de datos.
+  fieldset
+    legend Datos personales
+    label  Nombres 
+    input(type='text' name='Nombres')
+    br
+    label  Apellidos 
+    input(type='text' name='Apellidos')
+    br
+    label  Email 
+    input(type='text' name='Email')
+    br
+    label  Contrase&ntilde;a 
+    input(type='password' name='Contraseña')
+    br
+    input(type='button' value='Enviar')
+p Click ac&aacute; para regresar a la p&aacute;gina prinicipal
