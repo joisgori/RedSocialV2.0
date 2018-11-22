@@ -13,6 +13,8 @@ router.get('/signup', function(req, res, next) { //Cambiaré la ruta de signup
   res.render('formulario');
 });
 
+
+
 router.post('/signup',userController.store);
 
 module.exports = router;
