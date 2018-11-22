@@ -1,0 +1,92 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  title Page Title
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  link(rel='stylesheet' type='text/css' media='screen' href='public/css/stylePrincipal.css')
+  script(src='main.js')
+nav.nav_content
+  header
+    div
+      img.logoIconPage(src='public/img/logoP.png' alt='')
+  a(href='') profile
+  li
+    | Account Settings   v
+    // icono flecha
+.body_content
+  #content.content
+    article.content_post
+      p @Username
+      p post
+      section.reaction_post
+        button like
+        button dislike
+      section
+        h2 comments
+        .commit
+          // commit content
+          p @usenameCommit
+          p
+            | commit...... Lorem ipsum dolor sit amet consectetur adipisicing elit. Et aliquid enim praesentium, a commodi deleniti exercitationem eos quae mollitia velit quia provident sint! Rerum aspernatur eligendi, hic placeat aliquam perspiciatis!
+          button commiting
+          // crea un commiting al presionarlo
+        .commiting
+          // commit input content
+          input(type='text')
+          button commit
+    article.content_post
+      p @Username
+      p post
+      section.reaction_post
+        button like
+        button dislike
+      section
+        h2 comments
+        .commit
+          // commit content
+          p @usenameCommit
+          p
+            | commit...... Lorem ipsum dolor sit amet consectetur adipisicing elit. Et aliquid enim praesentium, a commodi deleniti exercitationem eos quae mollitia velit quia provident sint! Rerum aspernatur eligendi, hic placeat aliquam perspiciatis!
+          button commiting
+          // crea un commiting al presionarlo
+        .commiting
+          // commit input content
+          input(type='text')
+          button commit
+    article.content_post
+      p @Username
+      p post
+      section.reaction_post
+        button like
+        button dislike
+      section
+        h2 comments
+        .commit
+          // commit content
+          p @usenameCommit
+          p
+            | commit...... Lorem ipsum dolor sit amet consectetur adipisicing elit. Et aliquid enim praesentium, a commodi deleniti exercitationem eos quae mollitia velit quia provident sint! Rerum aspernatur eligendi, hic placeat aliquam perspiciatis!
+          button commiting
+          // crea un commiting al presionarlo
+        .commiting
+          // commit input content
+          input(type='text')
+          button commit
+  aside.music_bank
+    // barra de musica
+    h2 lista de reproduccion
+    // titulo de la barra de musica
+    .music_content
+      // musica
+      .music_info
+        img(src='' alt='')
+        // caratula cancion o por defecto
+        p autor
+        p album
+      .music_info_detalle
+        // otras caracteristicas de la cancion
+        p nombre cancion
+        p duracion cancion
+footer.music_player
+  | reproductor

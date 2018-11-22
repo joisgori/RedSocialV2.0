@@ -1,0 +1,61 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  title Creacion cuenta
+  // Latest compiled and minified CSS
+  link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+  // jQuery library
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+  // Latest compiled JavaScript
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+  link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.1/css/all.css' integrity='sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz' crossorigin='anonymous')
+  link(rel='stylesheet' href='css/stryleform.css')
+header
+  h1 Abre una cuenta y ponte en contacto con tus amigos y la musica
+  
+  a(href='/') REGRESAR
+form(action='/users/signup' method='post')
+  fieldset
+    .panel.panel-primary
+      .panel-heading
+        i.fas.fa-user-plus
+        |  Agregar nueva cuenta
+      .panel-body
+        fieldset
+          .form-group.col-md-6
+            label Nombre
+            .input-group
+              .input-group-addon
+                i.fa.fa-user
+              input.form-control(type='text' placeholder='Ingrese Nombre' aria-describedby='basic-addon1' required='' name='nombre')
+          .form-group.col-md-6
+            label Apellido
+            .input-group
+              .input-group-addon
+                i.fa.fa-user
+              input.form-control(type='text' placeholder='Ingrese su apellido' aria-describedby='basic-addon1' required='' name='apellido')
+          .form-group.col-md-6
+            label Correo Electronico
+            .input-group
+              .input-group-addon
+                i.fa.fa-at
+              input.form-control(type='email' placeholder='Ingrese su correo electronico' aria-describedby='basic-addon1' data-validation='required' data-validation-error-msg='rellene este campo' name='correo')
+          .form-group.col-md-6
+            label Contrase&ntilde;a
+            .input-group
+              .input-group-addon
+                i.fa.fa-key
+              input.form-control(type='password' placeholder='Nueva contraseña' aria-describedby='basic-addon1' required='' name="password")
+          .form-group.col-md-6
+            label Fecha de nacimiento
+            .input-group
+              .input-group-addon
+                i.fa.fa-calendar
+              input.form-control(type='date' placeholder='Ingrese su fechga de nacimiento' aria-describedby='basic-addon1' required='' name="fecha")
+          .col-md-6
+            span.input-group-btn
+              button.btn.btn-success.btn-lg.btn-block(input='' type='submit')
+                | Registrarte
+footer
+  div
+    p copyright: Luis, Diego, Josu&eacute;, Javier --- proyecto web 2018 
