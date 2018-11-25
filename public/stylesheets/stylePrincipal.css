@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    border:0;
+    
+}
+
+.content{
+    margin: 2%;
+    padding:1%;
+    border: double;
+}
+
+
+
+.logoIconPage{
+    height: 20vh;
+    width: 20vh;
+    border: dotted;
+    border-radius: 100%;
+}
+
+.logoIconPage:hover{
+    transition: 0.5s;
+    height: 50vh;
+    width: 50vh;
+}
+
+
+.commit{
+    
+    background-color: blue;
+    width: fit-content;
+    text-align: center;
+    height: fit-content;
+}
+.commit>.commit{
+    background-color: blue;
+    margin-left: 1em;
+    height: 0;
+    width: 0;
+    /*margin-top: -1;
+    visibility: hidden;*/
+    border-left: double;
+    color: rgba(255, 255, 255, 0);
+    
+}
+.commit:hover>.commit {
+    width: fit-content;
+    height: fit-content;
+    color: black;
+}
+
+.music_bank{
+    background-color: green;
+}
+.music_player{
+    background-color: gray;
+}
+
+.content_post{
+    border-radius: 1em;  
+    background-color: blueviolet;
+}
+
+.content_commit{
+    margin: 1em;
+    border-radius: 1em;
+    background-color: black;
+}
+
+.content_commit *{
+    text-align: center;
+}
+
+.body_content{
+    display: flex;
+}
+
+.nav_content{
+    display: flex;
+}
+
+.reaction_post{
+    background-color: crimson;
+}
