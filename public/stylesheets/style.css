@@ -1,79 +1,86 @@
 *{
+    margin: 0;
+    padding: 0;
+    border:0;
+    
+}
+
+.content{
+    margin: 2%;
+    padding:1%;
+    border: double;
+}
+
+
+
+.logoIconPage{
+    height: 20vh;
+    width: 20vh;
+    border: dotted;
+    border-radius: 100%;
+}
+
+.logoIconPage:hover{
+    transition: 0.5s;
+    height: 50vh;
+    width: 50vh;
+}
+
+
+.commit{
+    
+    background-color: blue;
+    width: fit-content;
+    text-align: center;
+    height: fit-content;
+}
+.commit>.commit{
+    background-color: blue;
+    margin-left: 1em;
+    height: 0;
+    width: 0;
+    /*margin-top: -1;
+    visibility: hidden;*/
+    border-left: double;
+    color: rgba(255, 255, 255, 0);
+    
+}
+.commit:hover>.commit {
+    width: fit-content;
+    height: fit-content;
+    color: black;
+}
+
+.music_bank{
+    background-color: green;
+}
+.music_player{
+    background-color: gray;
+}
+
+.content_post{
+    border-radius: 1em;  
+    background-color: blueviolet;
+}
+
+.content_commit{
+    margin: 1em;
+    border-radius: 1em;
+    background-color: black;
+}
+
+.content_commit *{
     text-align: center;
 }
 
-header{
-    border: 1px solid black;
-    padding:0px;
-    margin: 0px;
-    color: rgb(167, 157, 157);
-    background-color: black;
-    
-}
-
-main{
-    border: 1px solid black;
-    padding: 10px;
-    background-color: rgb(141, 150, 145);
-}
-.contenedor {
+.body_content{
     display: flex;
-    flex-direction: row ;
-    justify-content: center;
-  
-    
-}
-.Flex{
-    border: 1px solid black;
-    width: 500px;
-    height: 500px;
-    
 }
 
-
-footer{
-    border: 1px solid black;
-    color: rgb(167, 157, 157);
-    background-color: black;
-}
-
-*{
-    text-align: center;
-}
-
-header{
-    border: 1px solid black;
-    padding:0px;
-    margin: 0px;
-    color: rgb(167, 157, 157);
-    background-color: black;
-    
-}
-
-main{
-    border: 1px solid black;
-    padding: 10px;
-    background-color: rgb(141, 150, 145);
-}
-.contenedor {
+.nav_content{
     display: flex;
-    flex-direction: row ;
-    justify-content: center;
-  
-    
-}
-.Flex{
-    border: 1px solid black;
-    width: 500px;
-    height: 500px;
-    
 }
 
-
-footer{
-    border: 1px solid black;
-    color: rgb(167, 157, 157);
-    background-color: black;
+.reaction_post{
+    background-color: crimson;
 }
-
-
