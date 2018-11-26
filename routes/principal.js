@@ -1,22 +1,22 @@
 var express = require('express');
 var router = express.Router();
-//var postController = require('../controller/principalControler');
+var postController = require('../controller/principalControler');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.render('principal');
 });
 
-router.get('/', UserController.getAll);
-router.get('/:id', UserController.getOne);
+router.get('/', postController.getAll);
+router.get('/:id', postController.getOne);
 // Create
-router.post('/', UserController.insert);
+router.post('/', postController.insert);
 
 // UPDATE
-router.put('/:id', UserController.update);
+router.put('/:id', postController.update);
 
 // Delete
-router.delete('/:id',UserController.delete);
+router.delete('/:id',postController.delete);
 
 module.exports = router;
 

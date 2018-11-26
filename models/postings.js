@@ -1,7 +1,4 @@
 const mongoose = require('mongoose'); //Para manipular conexión y el manejo de la base de datos
-const commit = require('commits');
-                       
-
 const { Schema } = mongoose; //Objeto Schema para realizar diferentes operaciones
 const PostSchema = new Schema({
     //atributos con sus validaciones
