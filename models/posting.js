@@ -9,8 +9,8 @@ var PostSchema = new mongoose.Schema({
         type:String, 
         required:true
     } ,
-    likes: number,
-    dislikes:number
+    likes: Number,
+    dislikes:Number
 });
 
 module.exports = mongoose.model('posting', PostSchema);
