@@ -8,7 +8,9 @@ var PostSchema = new mongoose.Schema({
     username: {
         type:String, 
         required:true
-    } 
+    } ,
+    likes: number,
+    dislikes:number
 });
 
 module.exports = mongoose.model('posting', PostSchema);

@@ -65,7 +65,9 @@ controller.getOne = function (req, res) {
 controller.update = function (req, res) {
     // Falta validar si exiten los atributos
     let update = {
-        post: req.body.post
+        post: req.body.post,
+        likes:req.body.likes,
+        dislikes:req.body.dislikes
     };
     postingModel.findByIdAndUpdate(req.params.id, update, function (err, old) {
         if (err) {
@@ -87,7 +89,9 @@ controller.update = function (req, res) {
 controller.insert = function(req,res){
     let postNew = new postingModel({
         post: req.body.post,
-        username: req.body.username
+        username: req.body.username,
+        likes: 0,
+        dislikes:0
     });
 
     postNew.save(function(err,insertado){
