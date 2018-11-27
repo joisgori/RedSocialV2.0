@@ -67,12 +67,12 @@ controller.update = function (req, res) {
 };
 
 controller.insert = function(req,res){
-    let userNew = new postingModel({
+    let postNew = new postingModel({
         post: req.body.post,
         username: req.body.username
     });
 
-    userNew.save(function(err,insertado){
+    postNew.save(function(err,insertado){
         if(err){
             res.status(500);
             res.json({

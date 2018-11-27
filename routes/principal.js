@@ -18,6 +18,7 @@ router.put('/:id', postController.update);
 // Delete
 router.delete('/:id',postController.delete);
 
+
 module.exports = router;
 
 
