@@ -7,7 +7,8 @@ router.get('/', function(req, res, next) {
   res.render('principal');
 });
 
-router.get('/', postController.getAll);
+router.get('/all/', postController.getAll);
+router.get('/all/:username', postController.getAllCommits);
 router.get('/:id', postController.getOne);
 // Create
 router.post('/', postController.insert);

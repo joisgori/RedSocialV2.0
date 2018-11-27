@@ -17,8 +17,24 @@ controller.getAll = function (req, res) {
         } else {            
             res.json({
                 ok: true,
-                posts,
-                getcommit
+                posts
+            });
+        }
+    });
+};
+
+controller.getAllCommits = function (req, res) {
+    postingModel.find({username:req.params.username}, function (err, commits) {
+        if (err) {
+            res.status(500);
+            res.json({
+                ok: false,
+                err
+            });
+        } else {            
+            res.json({
+                ok: true,
+                commits
             });
         }
     });
@@ -149,15 +165,7 @@ controller.deleteCommit =  function(req,res){
 
 module.exports = controller;
 
-/*getcommit = function(req){
-    postingModel.findById(req, function (err, commits) {
-        if (err) {
-            return err;
-        } else {            
-            return commits;
-        }
-    });
-}*/
+
 
 
 
