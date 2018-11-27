@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-var postingModel = require('../models/postings');
-var commitModel = require('../models/commits');
+var postingModel = require('../models/posting');
+var commitModel = require('../models/commit');
 
 
 let controller = {};
@@ -149,7 +149,7 @@ controller.deleteCommit =  function(req,res){
 
 module.exports = controller;
 
-getcommit = function(req){
+/*getcommit = function(req){
     postingModel.findById(req, function (err, commits) {
         if (err) {
             return err;
@@ -157,7 +157,7 @@ getcommit = function(req){
             return commits;
         }
     });
-}
+}*/
 
 
 

@@ -3,10 +3,21 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var principalRouter = require('./routes/principal');
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/entrenamiento', { useNewUrlParser: true })
+        .then(()=> {
+          console.log("Conectado a Mongo");
+        })
+        .catch((err) => {
+          console.log("No se puede conectar a mongo");
+          console.log(err);
+        });
 
 var app = express();
 
