@@ -1,29 +1,11 @@
 var mongoose = require('mongoose');
-var postingModel = require('../models/posting');
 var commitModel = require('../models/commit');
 
 
 let controller = {};
 
-// Obtener todos los usuarios
-controller.getAll = function (req, res) {
-    postingModel.find({}, function (err, posts) {
-        if (err) {
-            res.status(500);
-            res.json({
-                ok: false,
-                err
-            });
-        } else {            
-            res.json({
-                ok: true,
-                posts
-            });
-        }
-    });
-};
 
-controller.getAllCommits = function (req, res) {
+controller.getAllCommits = function (req, res) { console.log('all');
     commitModel.find({}, function (err, commits) {
         if (err) {
             res.status(500);
@@ -42,32 +24,33 @@ controller.getAllCommits = function (req, res) {
     });
 };
 
-controller.getOne = function (req, res) {
-    postingModel.findOne({
-        _id: req.params.id
-    }, function (err, post) {
+controller.getAllCommitsOne = function (req, res) {
+    console.log(req.params.username);
+    commitModel.find({username: req.params.username}, function (err, commits) {
         if (err) {
             res.status(500);
             res.json({
                 ok: false,
+                ko: true,
                 err
             });
-        } else {
+        } else {            
             res.json({
                 ok: true,
-                post,
-                getcommit
+                com: 'eventuali',
+                commits
             });
         }
     });
 };
 
+
 controller.update = function (req, res) {
     // Falta validar si exiten los atributos
     let update = {
-        post: req.body.post
+        commit: req.body.post
     };
-    postingModel.findByIdAndUpdate(req.params.id, update, function (err, old) {
+    commitModel.findByIdAndUpdate(req.params.id, update, function (err, old) {
         if (err) {
             res.status(500);
             res.json({
@@ -84,44 +67,6 @@ controller.update = function (req, res) {
     });
 };
 
-controller.insert = function(req,res){
-    let postNew = new postingModel({
-        post: req.body.post,
-        username: req.body.username
-    });
-
-    postNew.save(function(err,insertado){
-        if(err){
-            res.status(500);
-            res.json({
-                ok: false,
-                err
-            });
-        } else {
-            res.json({
-                ok: true,
-                insertado
-            });
-        }
-    });
-};
-
-controller.delete =  function(req,res){
-    postingModel.findByIdAndRemove(req.params.id, function(err, eliminado){
-        if(err){
-            res.status(500);
-            res.json({
-                ok: false,
-                err
-            });
-        } else {
-            res.json({
-                ok: true,
-                eliminado
-            });
-        }
-    });
-}
 
 controller.insertCommit = function(req,res){
     let commitNew = new commitModel({
