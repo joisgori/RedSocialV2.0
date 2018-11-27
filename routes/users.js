@@ -15,6 +15,6 @@ router.get('/signup', function(req, res, next) { //Cambiaré la ruta de signup
 
 
 
-router.post('/signup',userController.store);
+router.post('/signup',userController.insert);
 
 module.exports = router;
