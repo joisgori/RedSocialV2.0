@@ -143,8 +143,11 @@ let addCommit= function (data,commitContent) {
     let commit = document.createElement('div');commit.setAttribute("class","commit");
     commit.setAttribute("commit_id",`${data._id}`);
     commit.innerHTML = `
+            <div class="commit_data_user">
                 <p>${data.username}</p>
-                <p>${data.commit}</p>
+            </div>
+            <p>${data.commit}</p>
+            
 `;
 commitContent.appendChild(commit);
 }
@@ -155,7 +158,9 @@ let addPost= function (data) {
     let postContent = document.createElement('article');postContent.setAttribute("class","content_post");postContent.setAttribute("post_id",`${data._id}`);
     postContent.setAttribute("post_id",`${data._id}`);
     postContent.innerHTML = `
+                <div class="post_data_user">
                 <p>${data.username}</p>
+                </div>
                 <p>${data.post}</p>
                 <section class="reaction_post">
                     <button class="btn_like">like</button>
@@ -165,8 +170,8 @@ let addPost= function (data) {
 
     
     commitContent.innerHTML = `
-                <h2>comments</h2>
-`;  commitButton.innerText="commit";
+                <h2>Comentarios</h2>
+`;  commitButton.innerText="agregar un nuevo comentario";
     commitContent.appendChild(commitButton);
     postContent.appendChild(commitContent);
     let tbody = document.getElementsByClassName("content")[0];
