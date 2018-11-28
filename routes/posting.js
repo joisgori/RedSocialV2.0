@@ -1,20 +1,20 @@
 var express = require('express');
 var router = express.Router();
-var commitController = require('../controller/commitControler');
+var commitController = require('../controller/postingControler');
 
 /* GET users listing. */
-router.get('/', commitController.getAllCommits);
+router.get('/', commitController.getAll);
 
-router.get('/:_idpost', commitController.getAllCommitsOne);
+router.get('/:username', commitController.getAllPostingsOne);
 
 // Create
-router.post('/', commitController.insertCommit);
+router.post('/', commitController.insert);
 
 // UPDATE
 router.put('/:id',commitController.update);
 
 // Delete
-router.delete('/:id',commitController.deleteCommit);
+router.delete('/:id',commitController.delete);
 
 
 module.exports = router;

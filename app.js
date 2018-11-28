@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var principalRouter = require('./routes/principal');
 var commitRouter = require('./routes/commit');
+var postingRouter =require('./routes/posting');
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/entrenamiento', { useNewUrlParser: true })
@@ -36,6 +37,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/principal',principalRouter);
 app.use('/commit',commitRouter);
+app.use('/posting',postingRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

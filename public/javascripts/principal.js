@@ -1,4 +1,7 @@
-let app = {
+console.log("script :v");
+
+
+/*let app = {
     init: function () {
         this.addEvents();
     },
@@ -106,14 +109,38 @@ let app = {
 
         loadContent();
     }
-};
-window.onload = () => app.init();
+};*/
+window.onload = () => loadContentPost();//app.init();
 
+let loadContentPost = function(){
+    fetch("/posting/walther")//cambiar ruta :v
+                .then(res => res.json())
+                .then(data => {
+                    //console.log(data);
+                    data.posts.forEach(element=>{
+                        addPost(element);
+                    });
+                });
+                            
+
+};
+let loadContentCommit = function(_idpost,commitContent){
+    fetch(`/commit/${_idpost}`)//cambiar ruta :v
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    data.commits.forEach(element=>{
+                        addCommit(element,commitContent);
+                    });
+                });
+                            
+
+};
 
 
 
 let addCommit= function (data,commitContent) {
-    let commit = document.createElement('div').setAttribute("class","commit");
+    let commit = document.createElement('div');commit.setAttribute("class","commit");
     commit.setAttribute("commit_id",`${data._id}`);
     commit.innerHTML = `
                 <p>${data.username}</p>
@@ -123,22 +150,27 @@ commitContent.appendChild(commit);
 }
 
 let addPost= function (data) {
-    let commitContent = document.createElement('section').setAttribute("class","content_commit");
-    let postContent = document.createElement('article').setAttribute("class","content_post");
+    let commitContent = document.createElement('section');commitContent.setAttribute("class","content_commit");
+    let postContent = document.createElement('article');postContent.setAttribute("class","content_post","post_id",`${data._id}`);
     postContent.setAttribute("post_id",`${data._id}`);
     postContent.innerHTML = `
                 <p>${data.username}</p>
                 <p>${data.post}</p>
                 <section class="reaction_post">
                     <button class="btn_like">like</button>
-                    <button class="btn_disklike">>dislike</button>
-                    <button class="btn_commit">>commit</button>
+                    <button class="btn_disklike">dislike</button>
+                    <button class="btn_commit">commit</button>
                 </section>
 `;
     commitContent.innerHTML = `
                 <h2>comments</h2>
 `;
     postContent.appendChild(commitContent);
+    let tbody = document.getElementsByClassName("content")[0];
+    tbody.appendChild(postContent);
+    loadContentCommit(data._id,commitContent);
+
+}
 
 
 
@@ -155,13 +187,7 @@ let addPost= function (data) {
 
 
 
-
-
-
-
-    let tbody = document.getElementsByClassName("listUsers")[0];
-    tbody.appendChild(tr);
-
+/*
     let addEvents = () => {
         // Delete
         document.querySelectorAll(".delete").forEach(element => {
@@ -211,7 +237,7 @@ let addPost= function (data) {
     }
     addEvents();
 }
-
+*/
 
 /*<article class="content_post">
                 <p>@Username</p>

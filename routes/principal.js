@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   res.render('principal');
 });
 
-router.get('/posting', postController.getAll);
+router.get('/posting/:username', postController.getAll);
 
 router.get('/:id', postController.getOne);
 

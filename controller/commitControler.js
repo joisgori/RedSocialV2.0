@@ -24,9 +24,8 @@ controller.getAllCommits = function (req, res) { console.log('all');
     });
 };
 
-controller.getAllCommitsOne = function (req, res) {
-    console.log(req.params.username);
-    commitModel.find({username: req.params.username}, function (err, commits) {
+controller.getAllCommitsOne = function (req, res) {//    console.log(req.params.username);
+    commitModel.find({_idpost:req.params._idpost}, function (err, commits) {
         if (err) {
             res.status(500);
             res.json({
@@ -71,7 +70,8 @@ controller.update = function (req, res) {
 controller.insertCommit = function(req,res){
     let commitNew = new commitModel({
         commit: req.body.commit,
-        username: req.body.username
+        username: req.body.username,
+        _idpost: req.body._idpost
     });
 
     commitNew.save(function(err,insertado){

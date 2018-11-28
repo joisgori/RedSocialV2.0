@@ -8,7 +8,11 @@ var CommitSchema = new mongoose.Schema({
     username: {
         type:String, 
         required:true
-    } 
+    },
+    _idpost:{
+        type:String, 
+        required:true
+    }
 });
 
 module.exports = mongoose.model('commit', CommitSchema);

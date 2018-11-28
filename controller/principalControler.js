@@ -7,7 +7,7 @@ let controller = {};
 
 // Obtener todos los usuarios
 controller.getAll = function (req, res) {
-    postingModel.find({}, function (err, posts) {
+    postingModel.find({username:req.params.username}, function (err, posts) {
         if (err) {
             res.status(500);
             res.json({
@@ -23,24 +23,6 @@ controller.getAll = function (req, res) {
     });
 };
 
-controller.getAllCommits = function (req, res) {
-    commitModel.find({}, function (err, commits) {
-        if (err) {
-            res.status(500);
-            res.json({
-                ok: false,
-                ko: true,
-                err
-            });
-        } else {            
-            res.json({
-                ok: true,
-                com: 'eventuali',
-                commits
-            });
-        }
-    });
-};
 
 controller.getOne = function (req, res) {
     postingModel.findOne({
