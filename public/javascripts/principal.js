@@ -151,7 +151,8 @@ commitContent.appendChild(commit);
 
 let addPost= function (data) {
     let commitContent = document.createElement('section');commitContent.setAttribute("class","content_commit");
-    let postContent = document.createElement('article');postContent.setAttribute("class","content_post","post_id",`${data._id}`);
+    let commitButton = document.createElement('button');commitButton.setAttribute("class","btn_commit");
+    let postContent = document.createElement('article');postContent.setAttribute("class","content_post");postContent.setAttribute("post_id",`${data._id}`);
     postContent.setAttribute("post_id",`${data._id}`);
     postContent.innerHTML = `
                 <p>${data.username}</p>
@@ -159,17 +160,58 @@ let addPost= function (data) {
                 <section class="reaction_post">
                     <button class="btn_like">like</button>
                     <button class="btn_disklike">dislike</button>
-                    <button class="btn_commit">commit</button>
                 </section>
-`;
+`;  
+
+    
     commitContent.innerHTML = `
                 <h2>comments</h2>
-`;
+`;  commitButton.innerText="commit";
+    commitContent.appendChild(commitButton);
     postContent.appendChild(commitContent);
     let tbody = document.getElementsByClassName("content")[0];
     tbody.appendChild(postContent);
+    console.log(postContent.lastChild.previousSibling);
+    addCommitEvent(commitButton);
     loadContentCommit(data._id,commitContent);
 
+}
+
+let addCommitEvent=function(node){
+    node.addEventListener("click",function() {
+        let modal = document.createElement('div');modal.setAttribute("class","modal");modal.setAttribute("id","myModal");
+        let close = document.createElement('span');close.setAttribute("class","close-modal");
+        let modalContent = document.createElement('div');modalContent.setAttribute("class","modal-content");
+        
+        
+        modal.appendChild(modalContent);
+        modalContent.appendChild(close);
+        close.innerText = "X";
+        addCommitContenModel(modalContent);
+        let tbody = document.getElementsByClassName("content")[0];
+    tbody.appendChild(modal);
+    modal.style.display = "block";
+    close.onclick = function(){
+        tbody.removeChild(modal);
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            tbody.removeChild(modal);
+        }
+    }
+    });
+}
+
+
+let addCommitContenModel = function(node){
+    let commit = document.createElement('input');
+    commit.setAttribute("type","text");commit.setAttribute("name","commit");
+    let save = document.createElement('button');
+    save.setAttribute("class","save_commit");
+    save.innerText = "save";
+    node.appendChild(commit);
+    node.appendChild(save);
+    
 }
 
 
