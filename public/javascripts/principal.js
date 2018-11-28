@@ -128,7 +128,7 @@ let loadContentCommit = function(_idpost,commitContent){
     fetch(`/commit/${_idpost}`)//cambiar ruta :v
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    //console.log(data);
                     data.commits.forEach(element=>{
                         addCommit(element,commitContent);
                     });
@@ -171,7 +171,7 @@ let addPost= function (data) {
     postContent.appendChild(commitContent);
     let tbody = document.getElementsByClassName("content")[0];
     tbody.appendChild(postContent);
-    console.log(postContent.lastChild.previousSibling);
+    //console.log(postContent.lastChild.previousSibling);
     addCommitEvent(commitButton);
     loadContentCommit(data._id,commitContent);
 
@@ -189,14 +189,15 @@ let addCommitEvent=function(node){
         close.innerText = "X";
         addCommitContenModel(modalContent);
         let tbody = document.getElementsByClassName("content")[0];
-    tbody.appendChild(modal);
+        //console.log(node.parentElement);
+    node.parentElement.parentElement.appendChild(modal);
     modal.style.display = "block";
     close.onclick = function(){
-        tbody.removeChild(modal);
+        node.parentElement.parentElement.removeChild(modal);
     }
     window.onclick = function(event) {
         if (event.target == modal) {
-            tbody.removeChild(modal);
+            node.parentElement.parentElement.removeChild(modal);
         }
     }
     });
@@ -205,15 +206,45 @@ let addCommitEvent=function(node){
 
 let addCommitContenModel = function(node){
     let commit = document.createElement('input');
-    commit.setAttribute("type","text");commit.setAttribute("name","commit");
+    commit.setAttribute("type","text");commit.setAttribute("name","commit");commit.setAttribute("class","commit");
     let save = document.createElement('button');
     save.setAttribute("class","save_commit");
-    save.innerText = "save";
+    save.innerText = "Commit";
     node.appendChild(commit);
     node.appendChild(save);
+    save.addEventListener("click",savecommitEvent);
     
 }
 
+let savecommitEvent = function(){
+    let tbody = document.getElementsByClassName("modal")[0];
+    console.log(tbody.getElementsByClassName("commit")[0].value);
+    console.log(tbody.parentElement.getAttribute("post_id"));
+
+    let data = {
+        username: 'walther',
+        commit: tbody.getElementsByClassName("commit")[0].value,
+        _idpost: tbody.parentElement.getAttribute("post_id")
+    };
+    fetch('/commit', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => {
+        return res.json()
+    })
+    .then(data => {
+        if (data.ok) {
+            console.log(tbody.lastElementChild.previousElementSibling);
+            addCommit(data.insertado,tbody.lastElementChild.previousElementSibling);
+        } else {
+            let errors = document.getElementsByClassName("errors")[0];
+            errors.innerText = data.err;
+        }
+    });
+}
 
 
 
