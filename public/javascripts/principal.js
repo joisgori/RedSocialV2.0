@@ -237,8 +237,8 @@ let savecommitEvent = function(){
     })
     .then(data => {
         if (data.ok) {
-            console.log(tbody.lastElementChild.previousElementSibling);
-            addCommit(data.insertado,tbody.lastElementChild.previousElementSibling);
+            //console.log(tbody.parentElement.lastElementChild.previousSibling);
+            addCommit(data.insertado,tbody.parentElement.lastElementChild.previousSibling);
         } else {
             let errors = document.getElementsByClassName("errors")[0];
             errors.innerText = data.err;
