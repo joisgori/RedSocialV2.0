@@ -53,8 +53,8 @@ let addPost= function (data) {
                 </div>
                 <p>${data.post}</p>
                 <section class="reaction_post">
-                    <button class="btn_like">like</button>
-                    <button class="btn_disklike">dislike</button>
+                    <button class="btn_like"> <span name="like" id="like" class="like">${data.likes}</span>  like</button>
+                    <button class="btn_dislike"><span name="dislike" class="dislike">${data.dislikes}</span>  dislike</button>
                 </section>`;  
 
     
@@ -71,6 +71,7 @@ let addPost= function (data) {
     loadContentCommit(data._id,commitContent);
     eliminarPostPersonal(postContent);
     updatePostPersonal(postContent);
+    reactionPost(postContent);
 
 }
 
@@ -257,14 +258,12 @@ let eliminarPostPersonal = function(node){
 
 let updatepostEvent = function(){
     let tbody = document.getElementsByClassName("modal")[0];
-    //console.log(tbody.getElementsByClassName("post")[0].value);
-    //console.log(tbody.parentElement.getAttribute("post_id"));
-
+    console.log(tbody.parentElement.getElementsByClassName("like")[0]);
     let data = {
         username: 'walther',
         post: tbody.getElementsByClassName("post")[0].value,
-        likes:0,
-        dislikes:0
+        likes: Number(tbody.parentElement.getElementsByClassName("like")[0].innerText),
+        dislikes: Number(tbody.parentElement.getElementsByClassName("dislike")[0].innerText)
     };
     let id = tbody.parentElement.getAttribute("post_id");
     fetch('/posting/' + id, {
@@ -278,9 +277,9 @@ let updatepostEvent = function(){
     })
     .then(data => {
         if (data.ok) {
-            //console.log(tbody.parentElement.lastElementChild.previousSibling)
-            tbody.parentElement.parentElement.removeChild(tbody.parentElement);
-            addPost(data.update);
+            console.log(tbody.parentElement.getElementsByClassName("like")[0].innerText);
+            tbody.parentElement.getElementsByClassName("post_data_user")[0].nextElementSibling.innerText = data.update.post;
+            tbody.parentElement.removeChild(tbody);
         } else {
             let errors = document.getElementsByClassName("errors")[0];
             errors.innerText = data.err;
@@ -307,14 +306,68 @@ let updatePostPersonal = function(node){
     node.appendChild(modal);
     modal.style.display = "block";
     close.onclick = function(){
-        node.parentElement.parentElement.removeChild(modal);
+        modal.parentElement.removeChild(modal);
     }
     window.onclick = function(event) {
         if (event.target == modal) {
-            node.parentElement.parentElement.removeChild(modal);
+            modal.parentElement.removeChild(modal);
         }
     }
     });
+}
+
+
+
+let reactionPost = function(node){
+    let like = node.getElementsByClassName("btn_like")[0];
+    let likes = like.getElementsByClassName("like")[0];
+    let dislike = node.getElementsByClassName("btn_dislike")[0];
+    let dislikes = dislike.getElementsByClassName("dislike")[0];
+    like.addEventListener("click",function(){
+        console.log(Number(likes.innerText) + 1);
+        let data = {
+            post:like.parentElement.previousElementSibling.innerText,
+            likes: Number(likes.innerText) + 1,
+            dislikes:Number(dislikes.innerText)
+            
+        };
+        update(data);
+    });
+
+    dislike.addEventListener("click",function(){
+        console.log(like.parentElement.previousElementSibling.innerText);
+        let data = {
+            post:like.parentElement.previousElementSibling.innerText,
+            likes: Number(likes.innerText),
+            dislikes:Number(dislikes.innerText) + 1
+        };
+        update(data);
+    });
+
+
+    let update = function(data){
+        //console.log(data);
+    let id = node.getAttribute("post_id");
+    console.log(node);
+    fetch('/posting/' + id, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => {
+        return res.json()
+    })
+    .then(data => {
+        if (data.ok) {
+            //console.log(tbody.parentElement.lastElementChild.previousSibling)
+            dislikes.innerText = data.update.dislikes;
+            likes.innerText = data.update.likes;
+        } else {
+            let errors = document.getElementsByClassName("errors")[0];
+            errors.innerText = data.err;
+        }
+    });}
 }
 
 

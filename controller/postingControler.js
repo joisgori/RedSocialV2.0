@@ -67,6 +67,7 @@ controller.update = function (req, res) {
         dislikes:req.body.dislikes
     };
     postingModel.findByIdAndUpdate(req.params.id, update, function (err, old) {
+        console.log(update);
         if (err) {
             res.status(500);
             res.json({
