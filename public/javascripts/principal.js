@@ -1,21 +1,28 @@
 console.log("script :v");
+var Globaluser = "";
 
-window.onload = () => loadContentPost();//app.init();
+window.onload = () => loadUser();//app.init();
+
+let loadUser= function(){
+    fetch("/user").then(res => res.json())
+    .then(data => {
+        console.log(data.local.email);
+        Globaluser = data.local.email;
+        loadContentPost()
+    });
+}
 
 let loadContentPost = function(){
     //sessionStorage.append('a');
-    fetch("/user").then(res => res.json())
-    .then(data => {
-        console.log(data);
-        
-    });
-    //console.log(local.name);
+    
+    console.log(Globaluser + "23");
     addPostEvent();
     //addPostEventUpdate();
-    fetch("/posting/touya")//cambiar ruta :v
+    fetch(`/posting/${Globaluser}`)//cambiar ruta :v
                 .then(res => res.json())
                 .then(data => {
-                    //console.log(data);
+                    console.log(data);
+
                     data.posts.forEach(element=>{
                         addPost(element);
                     });
@@ -151,7 +158,7 @@ let savecommitEvent = function(){
     //console.log(tbody.parentElement.getAttribute("post_id"));
 
     let data = {
-        username: 'walther',
+        username: `${Globaluser}`,
         commit: tbody.getElementsByClassName("commit")[0].value,
         _idpost: tbody.parentElement.parentElement.getAttribute("post_id")
     };
@@ -183,7 +190,7 @@ let savepostEvent = function(){
     //console.log(tbody.parentElement.getAttribute("post_id"));
 
     let data = {
-        username: 'touya',
+        username: `${Globaluser}`,
         post: tbody.getElementsByClassName("post")[0].value,
         likes:0,
         dislikes:0
@@ -269,7 +276,7 @@ let updatepostEvent = function(){
     let tbody = document.getElementsByClassName("modal")[0];
     console.log(tbody.parentElement.getElementsByClassName("like")[0]);
     let data = {
-        username: 'walther',
+        username: `${Globaluser}`,
         post: tbody.getElementsByClassName("post")[0].value,
         likes: Number(tbody.parentElement.getElementsByClassName("like")[0].innerText),
         dislikes: Number(tbody.parentElement.getElementsByClassName("dislike")[0].innerText)

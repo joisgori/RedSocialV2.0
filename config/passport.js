@@ -35,7 +35,9 @@ User.findById(id,function(err, user){
                     passport.deserializeUser(function(id,done){
                         done(err, newUser);
                     });*/
-                    res.send(user).end();
+                    console.log("estoyaquijndnjc");
+                    //res.send(user).end();
+                    console.log("estoyaqui");
                     return done(null,newUser);                   
                 });
                
