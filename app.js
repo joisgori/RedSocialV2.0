@@ -18,23 +18,39 @@ mongoose.connect(url,{	useNewUrlParser: true})
 var postingRoutes = require("./routes/posting");
 var commitRoutes = require("./routes/commit");
 
+
+
 require('./config/passport')(passport);
 // settings
 app.set('port', process.env.PORT || 3000);
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine','pug');
+app.use(express.json());
 //middeware
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}));
+
+
 app.use(session({
 	secret:"sesion", //variable del entorno o palabra secreta para nuestras sessiones
 	resave:false,//para que no se guarde cada cierto tiempo
 	saveUnitialized: false
 }));
+
 app.use(passport.initialize());//iniciar passport
 app.use(passport.session());
 app.use(flash());
+
+app.use((req,res,next)=>{
+	app.locals.name = 'luis';
+	next();
+});
+
+
+
+
+
 
 //routes
 require('./routes/routes')(app,passport);

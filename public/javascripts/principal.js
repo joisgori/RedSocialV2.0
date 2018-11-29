@@ -3,9 +3,11 @@ console.log("script :v");
 window.onload = () => loadContentPost();//app.init();
 
 let loadContentPost = function(){
+    //sessionStorage.append('a');
+    //console.log(local.name);
     addPostEvent();
     //addPostEventUpdate();
-    fetch("/posting/walther")//cambiar ruta :v
+    fetch("/posting/touya")//cambiar ruta :v
                 .then(res => res.json())
                 .then(data => {
                     //console.log(data);
@@ -176,11 +178,12 @@ let savepostEvent = function(){
     //console.log(tbody.parentElement.getAttribute("post_id"));
 
     let data = {
-        username: 'walther',
+        username: 'touya',
         post: tbody.getElementsByClassName("post")[0].value,
         likes:0,
         dislikes:0
     };
+    console.log(data);
     fetch('/posting', {
         method: 'POST',
         body: JSON.stringify(data),
@@ -198,7 +201,8 @@ let savepostEvent = function(){
             addPost(data.insertado);
         } else {
             let errors = document.getElementsByClassName("errors")[0];
-            errors.innerText = data.err;
+            //errors.innerText = 
+            console.log(data.err);
         }
     });
 }
