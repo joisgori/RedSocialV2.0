@@ -39,6 +39,9 @@ module.exports = (app, passport) =>{
     app.get('/profile', (req,res)=>{
         res.render("principal");    });
 
+        app.get('/user', function(req, res){
+            res.send(req.user);
+          })
     //app.get('/posting/', commitController.getAll);
 
 //app.get('/posting/:username', commitController.getAllPostingsOne);

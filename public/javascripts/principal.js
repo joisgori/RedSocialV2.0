@@ -4,6 +4,11 @@ window.onload = () => loadContentPost();//app.init();
 
 let loadContentPost = function(){
     //sessionStorage.append('a');
+    fetch("/user").then(res => res.json())
+    .then(data => {
+        console.log(data);
+        
+    });
     //console.log(local.name);
     addPostEvent();
     //addPostEventUpdate();

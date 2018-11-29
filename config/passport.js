@@ -31,7 +31,11 @@ User.findById(id,function(err, user){
                 newUser.local.lastname=req.body.lastname;
                 newUser.local.birthday=req.body.birthday;
                 newUser.save(function(err){
-                    if(err){throw err;}
+                    /*if(err){throw err;}
+                    passport.deserializeUser(function(id,done){
+                        done(err, newUser);
+                    });*/
+                    res.send(user).end();
                     return done(null,newUser);                   
                 });
                
