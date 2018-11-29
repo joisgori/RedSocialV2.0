@@ -1,53 +1,38 @@
-//extends layout
-
-//block content
-  //h1= title
-  //p Welcome to #{title}
-
 doctype html
 head
   meta(charset='utf-8')
-  meta(charset='UTF-8')
-  meta(name='viewport', content='width=device-width, initial-scale=1.0')
-  meta(http-equiv='X-UA-Compatible', content='ie=edge')
-  link(rel='stylesheet', type='text/css', media='screen', href='/stylesheets/style.css')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  title BFriends
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  link(rel='stylesheet' type='text/css' media='screen' href='stylesheets/style.css')
   script(src='main.js')
-  title BFriends Login
-// Nuestro header, acá colocaremos el título y logo
-//
-  Opción dos, agregar un nav que implicaría cambiar todo este login pasandolo a botones, y dejar el simple formulario centrado,
-  casi no me gusta esta última idea.
-header
-  h1
-    | Hola mundo -- BFriends
-//
-  Acá en lo prinicipal, haremos una sección divida en dos columnas, a la izquierda un artículo con pinta de formulario de datos
-  y a la derecha un vídeo tutorial de qué puede encontrar en nuestra red social
+header.header
+  .grid
+    h1
+      | BFriends
+    h2
+      | Feel The music in you.
+  .grid
+    p
+      | Inserte Logo Aqui
 main
-  section.contenedor
-    // Los hijos respectivos que moveremos con grid; que serán los dos artículos
-    //
-      A su vez, este article deberá ser el contenedor de sus hijos, botones, entrada de texto para ajustarlos y moverlos fácilmente
+  section.container
     article.Flex
-      //
-        Los hijos de los flex que serían los input y botones que moveríamos más fácil con esta propiedad
-        Recordatorio:
-        Usar propiedades semánticas para juntar los capturadores de texto y vincularlos a los botones respectivos...
-      form
+      form(action="/login" method="POST")
         fieldset
           legend Login
           label Usuario
           | :
-          input(name='Usuario', placeholder='Username', type='text', maxlength='9', required='', pattern='[A-Za-z]+')
+          input(name='email' placeholder='algo@domain' type='email'  required='' )
           br
           br
           label(for='password') Password:
-          input(type='password', name='password', placeholder='Password', pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}', title='Debe contener un numero, una minuscula, una mayuscula y un min de 8 letras', required='')
+          input(type='password' name='password' placeholder='Password' pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' title='Debe contener un numero, una minuscula, una mayuscula y un min de 8 letras' required='')
           br
           br
-          input(type='submit', value='Login')
+          input(type='submit' a href="/principal" value="login")
           br
-          a(href='/users/signup') Crear cuenta
+          a(href='Formulario') Crear cuenta
           br
           a(href='') He olvidado mi contrase&ntilde;a
     article.Flex
@@ -56,9 +41,6 @@ main
         //
           Acá insertaremos el vídeo introductorio cuando lo tengamos, sino en el peor de los casos lo cambiamos por un simple
           div donde expliquemos la idea y objetivo de la red con texto plano xdd
-//
-  Footer, colocaremos cosas de derecho de autor, copyright, etc, firma de página, y algún hipervínculo para que pueda contactarnos
-  que lo enviaría a una nueva página para contactarnos.
 footer
   div
     p copyright: Luis, Diego, Josu&eacute;, Javier --- proyecto web 2018
