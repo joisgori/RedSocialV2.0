@@ -12,9 +12,8 @@ const session = require('express-session');//
 
 const { url } = require('./config/database.js');
 
-mongoose.connect(url,{
-	useNewUrlParser: true
-});
+mongoose.connect(url,{	useNewUrlParser: true})
+				.then(()=>{console.log("conectado a mongo")}).catch((err)=>{console.log("no se pudo conectar a mongo")});
 
 require('./config/passport')(passport);
 // settings
