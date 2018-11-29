@@ -87,14 +87,14 @@ let addCommitEvent=function(node){
         addCommitContenModel(modalContent);
         let tbody = document.getElementsByClassName("content")[0];
         //console.log(node.parentElement);
-    node.parentElement.parentElement.appendChild(modal);
+    node.parentElement.appendChild(modal);
     modal.style.display = "block";
     close.onclick = function(){
-        node.parentElement.parentElement.removeChild(modal);
+        node.parentElement.removeChild(modal);
     }
     window.onclick = function(event) {
         if (event.target == modal) {
-            node.parentElement.parentElement.removeChild(modal);
+            node.parentElement.removeChild(modal);
         }
     }
     });
@@ -139,13 +139,13 @@ let addPostContenModelUpdate = function(node){
 
 let savecommitEvent = function(){
     let tbody = document.getElementsByClassName("modal")[0];
-    console.log(tbody.getElementsByClassName("commit")[0].value);
-    console.log(tbody.parentElement.getAttribute("post_id"));
+    //console.log(tbody.getElementsByClassName("commit")[0].value);
+    //console.log(tbody.parentElement.getAttribute("post_id"));
 
     let data = {
         username: 'walther',
         commit: tbody.getElementsByClassName("commit")[0].value,
-        _idpost: tbody.parentElement.getAttribute("post_id")
+        _idpost: tbody.parentElement.parentElement.getAttribute("post_id")
     };
     fetch('/commit', {
         method: 'POST',
@@ -158,8 +158,8 @@ let savecommitEvent = function(){
     })
     .then(data => {
         if (data.ok) {
-            //console.log(tbody.parentElement.lastElementChild.previousSibling);
-            addCommit(data.insertado,tbody.parentElement.lastElementChild.previousSibling);
+            console.log(data.insertado,tbody.parentElement.lastElementChild);
+            addCommit(data.insertado,tbody.parentElement);
             let modal = document.getElementsByClassName("modal")[0];
             modal.parentElement.removeChild(modal);
         } else {
