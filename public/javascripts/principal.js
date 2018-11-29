@@ -113,6 +113,7 @@ console.log("script :v");
 window.onload = () => loadContentPost();//app.init();
 
 let loadContentPost = function(){
+    addPostEvent();
     fetch("/posting/walther")//cambiar ruta :v
                 .then(res => res.json())
                 .then(data => {
@@ -178,7 +179,9 @@ let addPost= function (data) {
     tbody.appendChild(postContent);
     //console.log(postContent.lastChild.previousSibling);
     addCommitEvent(commitButton);
+    //if (data.id)   ----------validar mi post
     loadContentCommit(data._id,commitContent);
+    eliminarPostPersonal(postContent);
 
 }
 
@@ -221,6 +224,18 @@ let addCommitContenModel = function(node){
     
 }
 
+let addPostContenModel = function(node){
+    let commit = document.createElement('input');
+    commit.setAttribute("type","text");commit.setAttribute("name","post");commit.setAttribute("class","post");
+    let save = document.createElement('button');
+    save.setAttribute("class","save_post");
+    save.innerText = "postear";
+    node.appendChild(commit);
+    node.appendChild(save);
+    save.addEventListener("click",savepostEvent);
+    
+}
+
 let savecommitEvent = function(){
     let tbody = document.getElementsByClassName("modal")[0];
     console.log(tbody.getElementsByClassName("commit")[0].value);
@@ -244,6 +259,8 @@ let savecommitEvent = function(){
         if (data.ok) {
             //console.log(tbody.parentElement.lastElementChild.previousSibling);
             addCommit(data.insertado,tbody.parentElement.lastElementChild.previousSibling);
+            let modal = document.getElementsByClassName("modal")[0];
+            modal.parentElement.removeChild(modal);
         } else {
             let errors = document.getElementsByClassName("errors")[0];
             errors.innerText = data.err;
@@ -251,13 +268,91 @@ let savecommitEvent = function(){
     });
 }
 
+let savepostEvent = function(){
+    let tbody = document.getElementsByClassName("modal")[0];
+    //console.log(tbody.getElementsByClassName("post")[0].value);
+    //console.log(tbody.parentElement.getAttribute("post_id"));
+
+    let data = {
+        username: 'walther',
+        post: tbody.getElementsByClassName("post")[0].value,
+        likes:0,
+        dislikes:0
+    };
+    fetch('/posting', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => {
+        return res.json()
+    })
+    .then(data => {
+        if (data.ok) {
+            //console.log(tbody.parentElement.lastElementChild.previousSibling);
+            let modal = document.getElementsByClassName("modal")[0];
+            modal.parentElement.removeChild(modal);
+            addPost(data.insertado);
+        } else {
+            let errors = document.getElementsByClassName("errors")[0];
+            errors.innerText = data.err;
+        }
+    });
+}
+
+let addPostEvent=function(){
+    let node = document.getElementsByClassName("post-btn")[0];
+    node.addEventListener("click",function() {
+        let modal = document.createElement('div');modal.setAttribute("class","modal");modal.setAttribute("id","myModal");
+        let close = document.createElement('span');close.setAttribute("class","close-modal");
+        let modalContent = document.createElement('div');modalContent.setAttribute("class","modal-content");
+        
+        
+        modal.appendChild(modalContent);
+        modalContent.appendChild(close);
+        close.innerText = "X";
+        addPostContenModel(modalContent);
+        //let tbody = document.getElementsByClassName("content")[0];
+        //console.log(node.parentElement);
+    node.parentElement.parentElement.appendChild(modal);
+    modal.style.display = "block";
+    close.onclick = function(){
+        node.parentElement.parentElement.removeChild(modal);
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            node.parentElement.parentElement.removeChild(modal);
+        }
+    }
+    });
+}
 
 
 
 
 
-
-
+let eliminarPostPersonal = function(node){
+    let close = document.createElement('button');close.setAttribute("class","delete-post");
+    close.innerText = "eliminar este post";
+    node.appendChild(close);
+    close.addEventListener("click", function (event) {
+        console.log(node);
+        let id = node.getAttribute("post_id");
+        fetch('/posting/' + id, {
+                method: 'DELETE'
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.ok) {
+                    node.parentElement.removeChild(node);
+                    
+                }
+            }).catch(err => {
+                console.log(err);
+            });
+    });
+}
 
 
 

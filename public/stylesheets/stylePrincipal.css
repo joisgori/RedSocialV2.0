@@ -4,6 +4,7 @@
     border:0; 
     --color-botones-reaccion: rgba(83, 224, 243, 0.795);
     --color-content-post:rgba(7, 250, 80, 0.774);
+    --color-boton-post:rgba(64, 250, 7, 0.774);
     --color-content-commit:rgba(165, 172, 173, 0.568);
     --color-commit: rgba(165, 172, 173, 0);
 }
@@ -25,6 +26,13 @@ body{
     flex: 1;
     display: flex;
     flex-direction: column;
+}
+
+.post-btn{
+    padding: 1%;
+    border-radius: 1em;
+    background-color: var(--color-boton-post);
+    border:solid;
 }
 
 .logoIconPage{
@@ -131,4 +139,8 @@ body{
     margin: 0 2%;
     width: 9em;
     background-color: var(--color-botones-reaccion);
+}
+
+.delete-post{
+    padding: 1%;
 }
