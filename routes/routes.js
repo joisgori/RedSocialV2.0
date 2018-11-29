@@ -1,3 +1,8 @@
+var express = require('express');
+var router = express.Router();
+var commitController = require('../controller/postingControler');
+
+
 module.exports = (app, passport) =>{
     //Index
     app.get('/', (req,res) =>{
@@ -35,6 +40,18 @@ module.exports = (app, passport) =>{
       /*  res.render('profile',{
         user: req.user
         });*/
-        res.render("principal");
-    });
+        res.render("principal");    });
+
+    //app.get('/posting/', commitController.getAll);
+
+//app.get('/posting/:username', commitController.getAllPostingsOne);
+
+// Create
+//app.post('/posting/', commitController.insert);
+
+// UPDATE
+//app.put('/posting/:id',commitController.update);
+
+// Delete
+//app.delete('/posting/:id',commitController.delete);
 };
