@@ -40,6 +40,7 @@ module.exports = (app, passport) =>{
       /*  res.render('profile',{
         user: req.user
         });*/
+<<<<<<< HEAD
         res.render("principal");    });
 
     //app.get('/posting/', commitController.getAll);
@@ -54,4 +55,21 @@ module.exports = (app, passport) =>{
 
 // Delete
 //app.delete('/posting/:id',commitController.delete);
+=======
+        res.render("principal");
+    });
+
+    app.get('/', commitController.getAll);
+
+app.get('/:username', commitController.getAllPostingsOne);
+
+// Create
+app.post('/', commitController.insert);
+
+// UPDATE
+app.put('/:id',commitController.update);
+
+// Delete
+app.delete('/:id',commitController.delete);
+>>>>>>> adaa4e922ecda3dc017b7019bcc5a6b6426f7894
 };
