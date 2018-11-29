@@ -1,3 +1,31 @@
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt-nodejs');
+
+const userSchema = new mongoose.Schema({
+    local:{
+        name: String,
+        lastname: String,
+        Birtday: Date,
+        email: String,
+        password: String,
+    }
+});
+
+userSchema.methods.generateHash = function(password){
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null ); //cifra la contraseña antes de guardarla en BD
+};
+
+
+userSchema.methods.validatePassword =function(password){
+    return bcrypt.compareSync(password, this.local.password);
+
+};
+
+module.exports = mongoose.model('User', userSchema);
+
+
+
+/*
 const mongoose = require('mongoose'); //Para manipular conexión y el manejo de la base de datos
 const bcrypt = require('bcrypt'); // Para encriptar contraseñas
                        
@@ -8,6 +36,7 @@ const UserSchema = new Schema({
     email: {type:String, required:true, unique:true}, 
     password: {type:String, required:true}
 });
+
 
 
 UserSchema.statics.authenticate = function (email, password, callback) {
@@ -43,4 +72,4 @@ UserSchema.pre('save', function (next) {
 let User = mongoose.model('users', UserSchema);
 
 
-module.exports = User;
+module.exports = User;*/

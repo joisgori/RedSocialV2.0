@@ -1,58 +1,46 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var mongoose = require('mongoose');
+const express = require('express');
+const app = express();
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var principalRouter = require('./routes/principal');
-var commitRouter = require('./routes/commit');
-var postingRouter =require('./routes/posting');
+const path = require('path');// modulo que permite manejar rutas
+const mongoose = require('mongoose');//permite conectarse a mongodb
+const passport = require('passport');// permite confugar la manera en la que me voy a autentificar en mi sistema
+const flash = require('connect-flash');// 
+const morgan = require('morgan');// manera en la cual definimos los metodos http que llegan al servidor
+const cookieParser = require('cookie-parser');//permite Administrar las cookies
+const bodyParser = require('body-parser');//convierte la informacion del navegador al servidor
+const session = require('express-session');//
 
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/entrenamiento', { useNewUrlParser: true })
-        .then(()=> {
-          console.log("Conectado a Mongo");
-        })
-        .catch((err) => {
-          console.log("No se puede conectar a mongo");
-          console.log(err);
-        });
+const { url } = require('./config/database.js');
 
-var app = express();
+mongoose.connect(url,{
+	useNewUrlParser: true
+});
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+require('./config/passport')(passport);
+// settings
+app.set('port', process.env.PORT || 3000);
+app.set('views',path.join(__dirname,'views'));
+app.set('view engine','pug');
+//middeware
+app.use(morgan('dev'));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(session({
+	secret:"sesion", //variable del entorno o palabra secreta para nuestras sessiones
+	resave:false,//para que no se guarde cada cierto tiempo
+	saveUnitialized: false
+}));
+app.use(passport.initialize());//iniciar passport
+app.use(passport.session());
+app.use(flash());
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/principal',principalRouter);
-app.use('/commit',commitRouter);
-app.use('/posting',postingRouter);
+//routes
+require('./routes/routes')(app,passport);
+//static files
+app.use(express.static(path.join(__dirname,'public')));
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+
+// start the server
+app.listen(app.get('port'), () => {
+	console.log('server on port ', app.get('port'));
 });
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-module.exports = app;
