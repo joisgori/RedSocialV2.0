@@ -12,7 +12,6 @@ body , html{
     height: 100%;
 }
 
-
 body{
     background: url('../img/fondo.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -160,4 +159,44 @@ div.reproductor{
 .contentFriends{
     background-color: var(--color-content-post);
     padding: 50vh;
+    align-items: center;
+    text-align: center;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.friend{
+    align-items: center;
+    text-align: center;
+    justify-items: center;
+    justify-content: center;
+    background-color: var(--color-boton-post);
+    margin: 1%;
+    display: flex;
+    border-radius: 1em;
+}
+.friend * {
+    align-items: center;
+    text-align: center;
+    justify-items: center;
+    margin: 0 1%;
+}
+
+.friend .email {
+    display: flex;
+    background-color: rgba(0, 0, 255, 0.452);
+    border-radius: 1em;
+
+}
+
+.friend .email * {
+    padding: 1em;
+    
+}
+
+.btn-social{
+    background-color: rgba(137, 43, 226, 0.418);
+    border-radius: 1em;
+    padding: 1em;
 }
