@@ -1,0 +1,14 @@
+* {
+    background: salmon;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background: skyblue;
+}
+
+.far {
+    width: 100px;
+    height: 100px;
+}
