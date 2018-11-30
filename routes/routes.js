@@ -46,6 +46,10 @@ module.exports = (app, passport) =>{
         app.get('/user', function(req, res){
             res.send(req.user);
         });
+
+    app.get('/perfil', (req, res) => {
+        res.render("perfil");
+    })
     
      app.get('/principal', passport.authenticate('local-login', {
         successRedirect:'/principal',
@@ -54,6 +58,8 @@ module.exports = (app, passport) =>{
          failureFlash: true
  
      }));
+
+
     
 
     
