@@ -1,5 +1,7 @@
 # Logs
 logs
+formulario.pug.s
+
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -59,3 +61,6 @@ typings/
 
 # next.js build output
 .next
+views/formulario.pug.s
+views/index.pug.s
+views/formulario.pug.s

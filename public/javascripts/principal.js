@@ -1,31 +1,45 @@
 var Globaluser = "";
+let myfriends=[];
 
 fetch("/user").then(res => res.json())
     .then(data => {
-        console.log(data.local);
+        //console.log(data.local);
         Globaluser = data.local.email;
+        fetch(`/friend/one/`+ Globaluser)//cambiar ruta :v
+        .then(res => res.json())
+        .then(data => {
+        console.log(data.friends[0].friends);
+        myfriends=data.friends[0].friends;});
     }).catch(function(){
         window.location.href = "/";
     });
 
 window.onload = () => loadContentPost();//app.init();
 
-let loadUser= function(){
+/*let loadUser= function(){
     fetch("/user").then(res => res.json())
     .then(data => {
         console.log(data.local);
         Globaluser = data.local.email;
         loadContentPost()
     });
-}
+}*/
 
 let loadContentPost = function(){
+    
+    
     //sessionStorage.append('a');
     
     //console.log(Globaluser + "23");
     addPostEvent();
     //addPostEventUpdate();
-    fetch(`/posting/${Globaluser}`)//cambiar ruta :v
+    
+
+//myfriends.unshift(Globaluser);
+
+console.log(myfriends);
+myfriends.forEach(ele=>{
+    fetch(`/posting/${ele}`)//cambiar ruta :v
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
@@ -36,7 +50,7 @@ let loadContentPost = function(){
                 });
                             
 
-};
+});};
 let loadContentCommit = function(_idpost,commitContent){
     fetch(`/commit/${_idpost}`)//cambiar ruta :v
                 .then(res => res.json())
