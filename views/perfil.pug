@@ -5,9 +5,37 @@ head
   meta(http-equiv='X-UA-Compatible' content='ie=edge')
   link(rel='stylesheet' type='text/css' media='screen' href='/stylesheets/perfil.css')
   link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous')
-  
   title Perfil
+  // Latest compiled and minified CSS
+  link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+  // jQuery library
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+  // Latest compiled JavaScript
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
 header
+  nav.navbar.navbar-inverse
+    .container-fluid
+      .navbar-header
+        a.navbar-brand(href='#') BFriends
+      //
+        <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Page 1</a></li>
+        <li><a href="#">Page 2</a></li>
+        </ul>
+      ul.nav.navbar-nav.navbar-right
+        li
+          a(href='/principal')
+            span.glyphicon.glyphicon-home
+            |  Home
+        li
+          a(href='/perfil')
+            span.glyphicon.glyphicon-user
+            |  Profile
+        li
+          a(href='/logout')
+            span.glyphicon.glyphicon-log-in
+            |  Logout
   // debe ser una especie de flex con el logo a la derecha
   h1 Perfil personal
   div logo
@@ -19,12 +47,9 @@ main
     input(type='text' placeholder='Hola mi nombre es fulanito, me gusta divertirme yend a fiestas... blabla')
     input(type='button' value='postear')
   div
-    p N&uacute;mero de seguidores: 
+    p N&uacute;mero de seguidores:
     p 1 :v
     button
-      a(href="/friend") Amigos
+      a(href='/friend') Amigos
   footer
     p copyright: Luis, Diego, Josu&eacute;, Javier --- proyecto web 2018
-
-
-
