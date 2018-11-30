@@ -1,0 +1,70 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  title Formulario
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  link(rel='stylesheet' type='text/css' media='screen' href='stylesheets/Form.css')
+  script(src='main.js')
+header.header
+  .grid
+    h1
+      | BFriends
+    h2
+      | Feel The music in you.
+  .grid
+    h3 Formulario
+  .grid
+    p
+      | Inserte Logo Aqui
+main
+  section.container
+    form(action="/signup" method="POST")
+      fieldset.Flex
+        legend Formulario
+        label Name
+        | :
+        input(name='name' placeholder='John' type='text' maxlength='9' required='' pattern='[A-Za-z]+')
+        br
+        br
+        label Lastname
+        | :
+        input(name='lastname' placeholder='Doe' type='text' maxlength='9' required='' pattern='[A-Za-z]+')
+        br
+        br
+        label(for='Birthday') Birthday:
+        input(type='date' name='Birthday' max='2000-01-01' required='')
+        br
+        br
+        label E-mail:
+        input(name='email' type='email' placeholder='something@domain.com' required='')
+        
+        label(for='password') Password:
+        input(type='password' name='password' placeholder='Password' pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' title='Debe contener un numero, una minuscula, una mayuscula y un min de 8 letras' required='')
+        br
+        br
+        label(for='verpassword') Verify Password:
+        input(type='password' name='verpassword' placeholder='Password' pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' title='Debe contener un numero, una minuscula, una mayuscula y un min de 8 letras' required='')
+        br
+        br
+        |                             Genero 
+        select
+          option M
+          option F
+        br
+        br
+        label Pregunta de Seguridad:
+        select(name='option' required='')
+          option(name='o1' value='1') &iquest;Cu&aacute;l es tu color favorito?
+          option(name='o2' value='2') &iquest;Cu&aacute;l es el nombre de tu primera mascota?
+          option(name='o3' value='3') &iquest;Cu&aacute;l es el mes de cumplea&ntilde;os de tu madre?
+          option(name='o4' value='4') &iquest;Cu&aacute;l es el pa&iacute;s que siempre has querido visitar?
+        label Respuesta:
+        input(name ='answer' type='text' required='' pattern='[A-Za-z]+')
+      input(type='submit' value='Send')
+      input(type='reset' value='”Cancel”')
+      button
+        a(href='/') Volver
+footer
+  div
+    p copyright: Luis, Diego, Josu&eacute;, Javier --- proyecto web 2018
