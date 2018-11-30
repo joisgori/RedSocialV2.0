@@ -8,39 +8,36 @@ head
   script(src='main.js')
 header.header
   .grid
-    h1
-      | BFriends
-    h2
-      | Feel The music in you.
+    h1 BFriends
+    h2 Feel The music in you.
   .grid
-    p
-      | Inserte Logo Aqui
+    p Inserte Logo Aqui
 main
   section.container
     article.Flex
-      form(action="/login" method="POST")
+      form(action='/login' method='POST')
         fieldset
           legend Login
           label Usuario
           | :
-          input(name='email' placeholder='algo@domain' type='email'  required='' )
+          input(name='email' placeholder='algo@domain' type='email' required='')
           br
           br
           label(for='password') Password:
-          input(type='password' name='password' placeholder='Password' pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' title='Debe contener un numero, una minuscula, una mayuscula y un min de 8 letras' required='')
+          input(type='password' name='password' placeholder='Password' pattern='(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}' title='Debe contener un numero, una minuscula, una mayuscula y un min de 8 letras' required='')
           br
           br
-          input(type='submit' a href="/principal" value="login")
+          input(type='submit' a='' href='/principal' value='login')
           br
           a(href='Formulario') Crear cuenta
           br
           a(href='') He olvidado mi contrase&ntilde;a
     article.Flex
-      p Video
-      video
-        //
-          Acá insertaremos el vídeo introductorio cuando lo tengamos, sino en el peor de los casos lo cambiamos por un simple
-          div donde expliquemos la idea y objetivo de la red con texto plano xdd
+   
+  
+  //
+        Acá insertaremos el vídeo introductorio cuando lo tengamos, sino en el peor de los casos lo cambiamos por un simple
+        div donde expliquemos la idea y objetivo de la red con texto plano xdd
 footer
   div
     p copyright: Luis, Diego, Josu&eacute;, Javier --- proyecto web 2018
