@@ -1,11 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var postController = require('../controller/principalControler');
+//var postController = require('../controller/principalControler');
+//const AuthMiddleware = require("../middlewares/AuthMiddleware");
+
+//router.use(AuthMiddleware.isAuthentication);
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.render('principal');
-});
+//router.get('/', function(req, res, next) {res.render('principal');});
 
 router.get('/posting/:username', postController.getAll);
 

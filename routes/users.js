@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var userController = require('../controller/UserController');
+//const AuthMiddleware = require("../middlewares/AuthMiddleware");
+//router.use(AuthMiddleware.isAuthentication);
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
