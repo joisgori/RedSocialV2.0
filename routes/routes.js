@@ -54,4 +54,9 @@ module.exports = (app, passport) =>{
 
 // Delete
 //app.delete('/posting/:id',commitController.delete);
+
+app.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+});
 };
