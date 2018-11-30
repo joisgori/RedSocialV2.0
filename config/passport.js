@@ -1,6 +1,7 @@
 const LocalStrategy = require('passport-local').Strategy;
 
 const User = require('../models/user');//el que se creo en module exports al final de users.js
+const User2 = require('../models/friends');
 
 ///const friends = require("../controller/friendControler")
 
@@ -44,6 +45,12 @@ User.findById(id,function(err, user){
                     console.log("estoyaquijndnjc");
                     //res.send(user).end();
                     console.log("estoyaqui");
+                    var newFr = new User2();
+                    newFr.email=email;
+                    newFr.friends=[];
+                    newFr.save(function(err){
+                        console.log("save");
+                    })
                     return done(null,newUser);                   
                 });
                
