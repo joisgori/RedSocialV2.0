@@ -67,7 +67,7 @@ let buttonFlow = function(tbody, friends,myfriends){
         
     let content = document.createElement('div');content.setAttribute("class","friend");
     let user = document.createElement('span');user.setAttribute("class","email");
-    let button = document.createElement('span');button.setAttribute("class","btn-social");
+    let button = document.createElement('span');button.setAttribute("class","veintitre-social");
     user.innerHTML =`
     <p>${friends.local.name}</p>
     <p>${friends.local.lastname}</p>
@@ -106,6 +106,9 @@ let unflow = function(name,node){
         .then(data => {
             if (data.ok) {
                 node.innerHTML="follow";
+                flow(name,node);
+                alert("unfollow");
+                
             } else {
                 let errors = document.getElementsByClassName("errors")[0];
                 errors.innerText = data.err;
@@ -128,7 +131,9 @@ let flow = function(name,node){
         })
         .then(data => {
             if (data.ok) {
-                node.innerHTML="unfllow";
+                node.innerHTML="unfollow";
+                unflow(name,node);
+                alert("follow");
             } else {
                 let errors = document.getElementsByClassName("errors")[0];
                 errors.innerText = data.err;
