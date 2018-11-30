@@ -36,7 +36,7 @@ let loadContentPost = function(){
     //addPostEventUpdate();
     
 
-//myfriends.unshift(Globaluser);
+myfriends.unshift(Globaluser);
 
 //console.log(myfriends);
 myfriends.forEach(ele=>{
