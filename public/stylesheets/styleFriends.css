@@ -171,10 +171,10 @@ div.reproductor{
     text-align: center;
     justify-items: center;
     justify-content: center;
-    width: fit-content;
     background-color: var(--color-boton-post);
     margin: 1%;
     display: flex;
+    border-radius: 1em;
 }
 .friend * {
     align-items: center;
@@ -185,4 +185,18 @@ div.reproductor{
 
 .friend .email {
     display: flex;
+    background-color: rgba(0, 0, 255, 0.452);
+    border-radius: 1em;
+
+}
+
+.friend .email * {
+    padding: 1em;
+    
+}
+
+.btn-social{
+    background-color: rgba(137, 43, 226, 0.418);
+    border-radius: 1em;
+    padding: 1em;
 }
