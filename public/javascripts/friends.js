@@ -14,7 +14,7 @@ window.onload = () => loadContent();//app.init();
 
 let loadContent = function(){
     let myfriends =[];
-    fetch(`/friend/`, {
+    /*fetch(`/friend/`, {
         method: 'POST',
         body: JSON.stringify({email:Globaluser}),
         headers: {
@@ -26,7 +26,7 @@ let loadContent = function(){
         //console.log(data);
         }).catch(err=>{
             console.log(err);
-        });
+        });*/
 
 fetch(`/friend/one/`+ Globaluser)//cambiar ruta :v
 .then(res => res.json())
