@@ -46,7 +46,8 @@ fetch(`/friend/one/`+ Globaluser)//cambiar ruta :v
 
         data.friends.forEach(element=>{
             //addPost(element);
-            buttonFlow(tbody,element,myfriends);
+            if(element.local.email!=Globaluser){
+            buttonFlow(tbody,element,myfriends);}
         });
     });
 
