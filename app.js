@@ -18,6 +18,9 @@ mongoose.connect(url,{	useNewUrlParser: true})
 var postingRoutes = require("./routes/posting");
 var commitRoutes = require("./routes/commit");
 
+var friendRouter = require('./routes/friend');
+//var authenticate = require("./middlewares/AuthMiddleware");
+
 
 
 require('./config/passport')(passport);
@@ -42,10 +45,12 @@ app.use(passport.initialize());//iniciar passport
 app.use(passport.session());
 app.use(flash());
 
-app.use((req,res,next)=>{
+
+
+/*app.use((req,res,next)=>{
 	app.locals.name = 'luis';
 	next();
-});
+});*/
 
 
 
@@ -54,10 +59,13 @@ app.use((req,res,next)=>{
 
 //routes
 require('./routes/routes')(app,passport);
+
 //static files
 app.use(express.static(path.join(__dirname,'public')));
+//app.use(authenticate.isAuthentication);
 app.use('/posting',postingRoutes);
 app.use('/commit',commitRoutes);
+app.use('/friend',friendRouter);
 // start the server
 app.listen(app.get('port'), () => {
 	console.log('server on port ', app.get('port'));

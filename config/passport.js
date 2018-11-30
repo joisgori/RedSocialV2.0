@@ -2,6 +2,8 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const User = require('../models/user');//el que se creo en module exports al final de users.js
 
+///const friends = require("../controller/friendControler")
+
 module.exports = function(passport){
 
     passport.serializeUser(function(user,done){
@@ -25,12 +27,16 @@ User.findById(id,function(err, user){
                 return done (null,false, req.flash('signupMessage', 'El email ya existe'));
             } else{
                 var newUser = new User();
+                console.log(req.body);
+                newUser.local.userId=req.body._id;
                 newUser.local.email=email;
                 newUser.local.password=newUser.generateHash(password);
                 newUser.local.name=req.body.name;
                 newUser.local.lastname=req.body.lastname;
                 newUser.local.birthday=req.body.birthday;
                 newUser.save(function(err){
+                    //friends.insertFriends(email);
+                    
                     /*if(err){throw err;}
                     passport.deserializeUser(function(id,done){
                         done(err, newUser);

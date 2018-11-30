@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var commitController = require('../controller/commitControler');
+//const AuthMiddleware = require("../middlewares/AuthMiddleware");
+//router.use(AuthMiddleware.isAuthentication);
 
 /* GET users listing. */
 router.get('/', commitController.getAllCommits);

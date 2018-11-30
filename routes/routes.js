@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var commitController = require('../controller/postingControler');
+//const AuthMiddleware = require("../middlewares/AuthMiddleware");
 
 
 module.exports = (app, passport) =>{
@@ -17,9 +18,8 @@ module.exports = (app, passport) =>{
     //Para cuando quiera Inscribirse el usuario
     app.post('/Formulario', passport.authenticate(''));
     //Principal
-    app.get('/principal', (req,res) =>{
-        res.render('principal');
-    }); 
+    
+    
 
     app.post('/signup', passport.authenticate('local-signup', {
        successRedirect:'/profile',
@@ -36,12 +36,27 @@ module.exports = (app, passport) =>{
          failureFlash: true
  
      }));
+     app.get('/logout', (req, res) => {
+        req.logout();
+        res.redirect('/');
+    });
+
     app.get('/profile', (req,res)=>{
         res.render("principal");    });
-
         app.get('/user', function(req, res){
             res.send(req.user);
-          })
+        });
+    
+     app.get('/principal', passport.authenticate('local-login', {
+        successRedirect:'/profile',
+         failureRedirect: '/',
+         passReqToCallback: true,
+         failureFlash: true
+ 
+     }));
+    
+
+    
     //app.get('/posting/', commitController.getAll);
 
 //app.get('/posting/:username', commitController.getAllPostingsOne);
@@ -55,8 +70,5 @@ module.exports = (app, passport) =>{
 // Delete
 //app.delete('/posting/:id',commitController.delete);
 
-app.get('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
-});
+
 };

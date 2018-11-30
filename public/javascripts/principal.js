@@ -6,7 +6,7 @@ window.onload = () => loadUser();//app.init();
 let loadUser= function(){
     fetch("/user").then(res => res.json())
     .then(data => {
-        console.log(data.local.email);
+        console.log(data.local);
         Globaluser = data.local.email;
         loadContentPost()
     });
@@ -15,7 +15,7 @@ let loadUser= function(){
 let loadContentPost = function(){
     //sessionStorage.append('a');
     
-    console.log(Globaluser + "23");
+    //console.log(Globaluser + "23");
     addPostEvent();
     //addPostEventUpdate();
     fetch(`/posting/${Globaluser}`)//cambiar ruta :v
