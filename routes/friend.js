@@ -8,10 +8,14 @@ var commitController = require('../controller/friendControler');
 router.get('/', function(req, res, next) {
     res.render('friends', { title: 'Express' });
   });
+  router.post('/',commitController.insertFriends);
+  router.put('/',commitController.update);
+router.delete('/',commitController.deleteOneFriend);
 router.get('/all', commitController.getAllFriends);
-router.post('/',commitController.insertFriends);
-router.put('/:email',commitController.update);
-router.delete('/:email',commitController.deleteOneFriend);
+router.get('/one/:email', commitController.getAllFriendsOne);
+router.get("/allOne",commitController.getAllFriendsAll);
+
+
 
 //router.get('/:_idpost', commitController.getAllCommitsOne);
 module.exports = router;

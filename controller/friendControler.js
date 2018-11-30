@@ -1,11 +1,29 @@
 var mongoose = require('mongoose');
 var commitModel = require('../models/friends');
+var userModel = require('../models/user');
 
 
 let controller = {};
 
 
 controller.getAllFriends = function (req, res) { console.log('all');
+    userModel.find({}, function (err, friends) {
+        if (err) {
+            res.status(500);
+            res.json({
+                ok: false,
+                err
+            });
+        } else {            
+            res.json({
+                ok: true,
+                friends
+            });
+        }
+    });
+};
+
+controller.getAllFriendsAll = function (req, res) { console.log('all');
     commitModel.find({}, function (err, friends) {
         if (err) {
             res.status(500);
@@ -23,7 +41,7 @@ controller.getAllFriends = function (req, res) { console.log('all');
 };
 
 controller.getAllFriendsOne = function (req, res) {//    console.log(req.params.username);
-    commitModel.find({email:req.params.email}, function (err, commits) {
+    commitModel.find({ email: req.params.email}, function (err, friends) {
         if (err) {
             res.status(500);
             res.json({
@@ -35,7 +53,7 @@ controller.getAllFriendsOne = function (req, res) {//    console.log(req.params.
             res.json({
                 ok: true,
                 com: 'eventuali',
-                commits
+                friends
             });
         }
     });
@@ -47,7 +65,7 @@ controller.update = function (req, res) {
     let update = {
         $push : {friends:req.body.friend}
     };
-    commitModel.findOneAndUpdate(req.params.email, update, function (err, old) {
+    commitModel.findOneAndUpdate({email:req.body.email}, update, function (err, old) {
         if (err) {
             res.status(500);
             res.json({
@@ -88,7 +106,7 @@ controller.insertFriends = function(req,res){
 };
 
 controller.deleteFriend =  function(req,res){
-    commitModel.findOneAndRemove(req.params.email, function(err, eliminado){
+    commitModel.findOneAndRemove({email:req.body.email}, function(err, eliminado){
         if(err){
             res.status(500);
             res.json({
@@ -106,9 +124,9 @@ controller.deleteFriend =  function(req,res){
 
 controller.deleteOneFriend =  function(req,res){
 let update = {
-    $pop : {friends:req.body.friend}
+    $pull : {friends:req.body.friend}
 };
-commitModel.findOneAndUpdate(req.params.email, update, function (err, old) {
+commitModel.findOneAndUpdate({email:req.body.email}, update, function (err, old) {
     if (err) {
         res.status(500);
         res.json({
