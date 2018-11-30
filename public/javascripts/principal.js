@@ -8,7 +8,7 @@ fetch("/user").then(res => res.json())
         fetch(`/friend/one/`+ Globaluser)//cambiar ruta :v
         .then(res => res.json())
         .then(data => {
-        console.log(data.friends[0].friends);
+        //console.log(data.friends[0].friends);
         myfriends=data.friends[0].friends;});
     }).catch(function(){
         window.location.href = "/";
@@ -37,12 +37,12 @@ let loadContentPost = function(){
 
 //myfriends.unshift(Globaluser);
 
-console.log(myfriends);
+//console.log(myfriends);
 myfriends.forEach(ele=>{
     fetch(`/posting/${ele}`)//cambiar ruta :v
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    //console.log(data);
 
                     data.posts.forEach(element=>{
                         addPost(element);
@@ -88,8 +88,8 @@ let addPost= function (data) {
                 </div>
                 <p>${data.post}</p>
                 <section class="reaction_post">
-                    <button class="btn_like"> <span name="like" id="like" class="like">${data.likes}</span>  like</button>
-                    <button class="btn_dislike"><span name="dislike" class="dislike">${data.dislikes}</span>  dislike</button>
+                    <button class="btn_like" > <span name="like" id="like" class="like" like="1">${data.likes}</span>  like</button>
+                    <button class="btn_dislike" ><span name="dislike" class="dislike" like="1">${data.dislikes}</span>  dislike</button>
                 </section>`;  
 
     
@@ -361,23 +361,32 @@ let reactionPost = function(node){
     let dislike = node.getElementsByClassName("btn_dislike")[0];
     let dislikes = dislike.getElementsByClassName("dislike")[0];
     like.addEventListener("click",function(){
-        console.log(Number(likes.innerText) + 1);
+        //console.log(Number(likes.innerText) + 1);
+        let flag=Number(likes.getAttribute("like"));
+        //console.log(likes);
         let data = {
             post:like.parentElement.previousElementSibling.innerText,
-            likes: Number(likes.innerText) + 1,
+            likes: Number(likes.innerText) + flag,
             dislikes:Number(dislikes.innerText)
             
         };
+        if(flag==1){
+            likes.setAttribute("like","0");
+        }
         update(data);
     });
 
     dislike.addEventListener("click",function(){
-        console.log(like.parentElement.previousElementSibling.innerText);
+        //console.log(like.parentElement.previousElementSibling.innerText);
+        let flag=Number(dislikes.getAttribute("like"));
         let data = {
             post:like.parentElement.previousElementSibling.innerText,
             likes: Number(likes.innerText),
-            dislikes:Number(dislikes.innerText) + 1
+            dislikes:Number(dislikes.innerText) + flag
         };
+        if(flag==1){
+            dislikes.setAttribute("like","0");
+        }
         update(data);
     });
 
@@ -385,7 +394,7 @@ let reactionPost = function(node){
     let update = function(data){
         //console.log(data);
     let id = node.getAttribute("post_id");
-    console.log(node);
+    //console.log(node);
     fetch('/posting/' + id, {
         method: 'PUT',
         body: JSON.stringify(data),
