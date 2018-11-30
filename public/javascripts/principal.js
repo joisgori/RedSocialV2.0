@@ -5,12 +5,7 @@ fetch("/user").then(res => res.json())
     .then(data => {
         //console.log(data.local);
         Globaluser = data.local.email;
-        fetch(`/friend`,{method:"POST",
-        body: JSON.stringify({email:Globaluser}),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-}).catch(err=>{console.log(err);})
+        
         fetch(`/friend/one/`+ Globaluser)//cambiar ruta :v
         .then(res => res.json())
         .then(data => {
