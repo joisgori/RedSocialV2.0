@@ -13,7 +13,7 @@ const session = require('express-session');//
 const { url } = require('./config/database.js');
 
 mongoose.connect(url,{	useNewUrlParser: true})
-				.then(()=>{console.log("conectado a mongo")}).catch((err)=>{console.log("no se pudo conectar a mongo")});
+				.then(()=>{console.log("conectado a mongo")}).catch(console.log);
 
 var postingRoutes = require("./routes/posting");
 var commitRoutes = require("./routes/commit");
