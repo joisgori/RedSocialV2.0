@@ -23,7 +23,7 @@ let loadContent = function(){
     })//cambiar ruta :v
     .then(res => res.json())
     .then(data => {
-        console.log(data);
+        //console.log(data);
         }).catch(err=>{
             console.log(err);
         });
@@ -31,8 +31,8 @@ let loadContent = function(){
 fetch(`/friend/one/`+ Globaluser)//cambiar ruta :v
 .then(res => res.json())
 .then(data => {
-    console.log(data.friends[0]);
-    myfriends=data.friends;
+    console.log(data.friends[0].friends);
+    myfriends=data.friends[0].friends;
 
 });
     let tbody = document.getElementsByClassName("contentFriends")[0];
@@ -92,9 +92,10 @@ let buttonAction = function(name, node, friends){
 
 let unflow = function(name,node){
     node.addEventListener("click",function(){
-        fetch('/friend/' + Globaluser, {
+        fetch('/friend/' , {
             method: 'DELETE',
-            body: JSON.stringify({friend: name}),
+            body: JSON.stringify({email:Globaluser,
+                friend: name}),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -113,9 +114,11 @@ let unflow = function(name,node){
 };
 let flow = function(name,node){
     node.addEventListener("click",function(){
-        fetch('/friend/' + Globaluser, {
+        fetch('/friend/' , {
             method: 'PUT',
-            body: JSON.stringify({friend: name}),
+            body: JSON.stringify({
+                email:Globaluser,
+                friend: name}),
             headers: {
                 'Content-Type': 'application/json'
             }
