@@ -104,8 +104,9 @@ let addPost= function (data) {
     addCommitEvent(commitButton);
     //if (data.id)   ----------validar mi post
     loadContentCommit(data._id,commitContent);
+    if(data.username==Globaluser){
     eliminarPostPersonal(postContent);
-    updatePostPersonal(postContent);
+    updatePostPersonal(postContent);}
     reactionPost(postContent);
 
 }
