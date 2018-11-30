@@ -1,51 +1,76 @@
 doctype html
 head
-  meta(charset='utf-8')
-  meta(http-equiv='X-UA-Compatible' content='IE=edge')
-  title Bfriend
-  meta(name='viewport' content='width=device-width, initial-scale=1')
-  link(rel='stylesheet' type='text/css' media='screen' href='stylesheets/stylePrincipal.css')
-  link(rel='stylesheet' type='text/css' media='screen' href='stylesheets/ventanaModal.css')
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  script(src='javascripts/principal.js')
-nav.nav_content
-  header
-    div
-      img.logoIconPage(src='img/logoP.png' alt='')
-  a(href='') profile
-  li
-    | Account Settings   <i class="fas fa-cogs"></i>
-  a(href='/logout') logout   
-       
-    // icono flecha
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    title Bfriend
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='stylesheet' type='text/css' media='screen' href='stylesheets/stylePrincipal.css')
+    link(rel='stylesheet' type='text/css' media='screen' href='stylesheets/ventanaModal.css')
+    link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous')
+    script(src='javascripts/principal.js')
+    // Latest compiled and minified CSS
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    // jQuery library
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+    // Latest compiled JavaScript
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.1/css/all.css' integrity='sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz' crossorigin='anonymous')
+nav.navbar.navbar-inverse
+    .container-fluid
+        .navbar-header
+            a.navbar-brand(href='#') BFriends
+        //
+          <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Page 1</a></li>
+          <li><a href="#">Page 2</a></li>
+          </ul>
+        ul.nav.navbar-nav.navbar-right
+            li
+                a(href='#')
+                    span.glyphicon.glyphicon-home
+                    |  Home
+            li
+                a(href='#')
+                    span.glyphicon.glyphicon-user
+                    |  Profile
+            li
+                a(href='/logout')
+                    span.glyphicon.glyphicon-log-in
+                    |  Logout
+
 .body_content
-  #content.content
-    button.post-btn nuevo post
-  aside.music_bank
-    // barra de musica
-    h2 lista de reproduccion
-    // titulo de la barra de musica
-    .music_content
-      // musica
-      .music_info
-        img(src='' alt='')
-        // caratula cancion o por defecto
-        p autor
-        p album
-      .music_info_detalle
-        // otras caracteristicas de la cancion
-        p nombre cancion
-        p duracion cancion
+    nav.nav_content
+        header
+            div
+                img.logoIconPage(src='img/logoP.png' alt='')
+    #content.content
+        button.post-btn nuevo post
+    aside.music_bank
+        // barra de musica
+        h2 lista de reproduccion
+        // titulo de la barra de musica
+        .music_content
+            // musica
+            .music_info
+                img(src='' alt='')
+                // caratula cancion o por defecto
+                p autor
+                p album
+            .music_info_detalle
+                // otras caracteristicas de la cancion
+                p nombre cancion
+                p duracion cancion
 footer
     .reproductor
         script.
             function cambiarTrack(track) {
-                var path =  track.getAttribute("path")
+                var path = track.getAttribute("path")
                 viejo_audio = document.getElementById("reproductor")
                 audio_padre = viejo_audio.parentNode
                 audio_padre.removeChild(viejo_audio)
                 nuevo_audio = document.createElement("audio")
-                nuevo_audio.setAttribute("id","reproductor")
+                nuevo_audio.setAttribute("id", "reproductor")
                 nuevo_audio.setAttribute("controls", "controls")
                 nuevo_audio.setAttribute("autoplay", "autoplay")
                 source = document.createElement("source")
@@ -53,12 +78,13 @@ footer
                 source.setAttribute("type", "audio/mpeg")
                 source.setAttribute("id", "reproductorSource")
                 nuevo_audio.appendChild(source)
-                audio_padre.appendChild(nuevo_audio)}
+                audio_padre.appendChild(nuevo_audio)
+            }
             function cargarReproductor() {
                 var select = document.getElementById("selectTrack")
                 var path = select.options[0].getAttribute("path")
                 nuevo_audio = document.createElement("audio")
-                nuevo_audio.setAttribute("id","reproductor")
+                nuevo_audio.setAttribute("id", "reproductor")
                 nuevo_audio.setAttribute("controls", "controls")
                 source = document.createElement("source")
                 source.setAttribute("src", path)
@@ -71,27 +97,19 @@ footer
         #reproductorBox
             select#selectTrack(multiple='' onchange='cambiarTrack(this.options[this.selectedIndex]);')
                 option(path='') POP-----
-
-                    option(path='multimedia/happy.mp3') Happy/ Pharell Williams
-                    option(path='multimedia/viva la vida.mp3') Viva la vida/ Coldplay
-
-                    option(path='') Salsa---
-
-                    option(autoplay='' path='multimedia/ahora quien.mp3') Ahora quien/Marc Anthony
-                    option(autoplay='' path='multimedia/ella lo que quiere es salsa.mp3') Ella lo que quiere es salsa /Victor Manuelle
-                    option(path='') ROCK---
-                    option(autoplay='' path='multimedia/back in black.mp3') Back in black AC/DC
-                    option(autoplay='' path='multimedia/sweet child.mp3') Sweet Child of mine / Guns n Roses
-
-                    option(path='') Classic Rock---
-
-                    option(autoplay='' path='multimedia/my girl.mp3') My girl / Nirvana
-                    option(autoplay='' path='multimedia/creep.mp3') Creep / Radiohead
-
-                    option(path='') Sad---
-
-                    option(autoplay='' path='multimedia/si no te hubieras ido.mp3') Si no te hubieras ido/ Maná
-                    option(autoplay='' path='multimedia/yesterday.mp3') Yesterday/ The beatles
-
+                option(path='multimedia/happy.mp3') Happy/ Pharell Williams
+                option(path='multimedia/viva la vida.mp3') Viva la vida/ Coldplay
+                option(path='') Salsa---
+                option(autoplay='' path='multimedia/ahora quien.mp3') Ahora quien/Marc Anthony
+                option(autoplay='' path='multimedia/ella lo que quiere es salsa.mp3') Ella lo que quiere es salsa /Victor Manuelle
+                option(path='') ROCK---
+                option(autoplay='' path='multimedia/back in black.mp3') Back in black AC/DC
+                option(autoplay='' path='multimedia/sweet child.mp3') Sweet Child of mine / Guns n Roses
+                option(path='') Classic Rock---
+                option(autoplay='' path='multimedia/my girl.mp3') My girl / Nirvana
+                option(autoplay='' path='multimedia/creep.mp3') Creep / Radiohead
+                option(path='') Sad---
+                option(autoplay='' path='multimedia/si no te hubieras ido.mp3') Si no te hubieras ido/ Man&aacute;
+                option(autoplay='' path='multimedia/yesterday.mp3') Yesterday/ The beatles
         script.
             cargarReproductor();

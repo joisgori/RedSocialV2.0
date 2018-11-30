@@ -22,7 +22,7 @@ module.exports = (app, passport) =>{
     
 
     app.post('/signup', passport.authenticate('local-signup', {
-       successRedirect:'/profile',
+       successRedirect:'/principal',
         failureRedirect: '/Formulario',
         passReqToCallback: true,
         failureFlash: true
@@ -30,7 +30,7 @@ module.exports = (app, passport) =>{
     }));
 
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect:'/profile',
+        successRedirect:'/principal',
          failureRedirect: '/',
          passReqToCallback: true,
          failureFlash: true
@@ -41,14 +41,14 @@ module.exports = (app, passport) =>{
         res.redirect('/');
     });
 
-    app.get('/profile', (req,res)=>{
+    app.get('/principal', (req,res)=>{
         res.render("principal");    });
         app.get('/user', function(req, res){
             res.send(req.user);
         });
     
      app.get('/principal', passport.authenticate('local-login', {
-        successRedirect:'/profile',
+        successRedirect:'/principal',
          failureRedirect: '/',
          passReqToCallback: true,
          failureFlash: true
