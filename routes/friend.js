@@ -5,7 +5,10 @@ var commitController = require('../controller/friendControler');
 //router.use(AuthMiddleware.isAuthentication);
 
 /* GET users listing. */
-router.get('/', commitController.getAllFriends);
+router.get('/', function(req, res, next) {
+    res.render('friends', { title: 'Express' });
+  });
+router.get('/all', commitController.getAllFriends);
 router.post('/',commitController.insertFriends);
 router.put('/:email',commitController.update);
 router.delete('/:email',commitController.deleteOneFriend);

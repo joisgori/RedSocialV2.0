@@ -1,7 +1,14 @@
-console.log("script :v");
 var Globaluser = "";
 
-window.onload = () => loadUser();//app.init();
+fetch("/user").then(res => res.json())
+    .then(data => {
+        console.log(data.local);
+        Globaluser = data.local.email;
+    }).catch(function(){
+        window.location.href = "/";
+    });
+
+window.onload = () => loadContentPost();//app.init();
 
 let loadUser= function(){
     fetch("/user").then(res => res.json())
