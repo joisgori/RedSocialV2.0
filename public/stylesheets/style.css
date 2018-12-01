@@ -42,3 +42,6 @@ footer{
     color: rgb(167, 157, 157);
     background-color: black;
 }
+body{
+    background-image: url("../img/images.jpg");
+}
