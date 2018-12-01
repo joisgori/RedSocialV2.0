@@ -13,7 +13,7 @@ const session = require('express-session');//
 const { url } = require('./config/database.js');
 
 mongoose.connect(url,{	useNewUrlParser: true})
-				.then(()=>{console.log("conectado a mongo")}).catch((err)=>{console.log("no se pudo conectar a mongo")});
+				.then(()=>{console.log("conectado a mongo")}).catch(console.error);
 
 var postingRoutes = require("./routes/posting");
 var commitRoutes = require("./routes/commit");
@@ -29,6 +29,7 @@ app.set('port', process.env.PORT || 3000);
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine','pug');
 app.use(express.json());
+app.use(express.static('public'));
 //middeware
 app.use(morgan('dev'));
 app.use(cookieParser());
