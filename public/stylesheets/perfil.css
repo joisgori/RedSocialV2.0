@@ -30,3 +30,14 @@ button{
     background-color: rgb(211, 160, 200);
     font-size: 45px;
 }
+div.reproductor{
+    background-color: black;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    border: 3px solid blue;
+}
+#selectTrack{
+    background-color: lightskyblue;
+}
