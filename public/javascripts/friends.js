@@ -109,7 +109,7 @@ let unflow = function(name,node){
                 let n = node.cloneNode(true);
                 node.parentNode.replaceChild(n,node);
                 flow(name,n);
-                alert("unfollow");
+               // alert("unfollow");
                 
             } else {
                 let errors = document.getElementsByClassName("errors")[0];
@@ -137,7 +137,7 @@ let flow = function(name,node){
                 let n = node.cloneNode(true);
                 node.parentNode.replaceChild(n,node);
                 unflow(name,n)
-                alert("follow");
+               // alert("follow");
             } else {
                 let errors = document.getElementsByClassName("errors")[0];
                 errors.innerText = data.err;
