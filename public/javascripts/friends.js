@@ -106,7 +106,9 @@ let unflow = function(name,node){
         .then(data => {
             if (data.ok) {
                 node.innerHTML="follow";
-                flow(name,node);
+                let n = node.cloneNode(true);
+                node.parentNode.replaceChild(n,node);
+                flow(name,n);
                 alert("unfollow");
                 
             } else {
@@ -132,7 +134,9 @@ let flow = function(name,node){
         .then(data => {
             if (data.ok) {
                 node.innerHTML="unfollow";
-                unflow(name,node);
+                let n = node.cloneNode(true);
+                node.parentNode.replaceChild(n,node);
+                unflow(name,n)
                 alert("follow");
             } else {
                 let errors = document.getElementsByClassName("errors")[0];
